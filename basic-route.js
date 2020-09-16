@@ -1,3 +1,5 @@
+const singleAnimalSchema = require('./validation/validation-schemas').singleAnimalSchema;
+
 // Basic routes
 async function routes(fastify, options){
     const collection = fastify.mongo.db.collection('animal');
@@ -14,12 +16,13 @@ async function routes(fastify, options){
         return result;
     });``
 
-    fastify.get('/animals/:name', async (request ,response) => {
-        const result = await collection.findOne({name: request.params.name});
-        if (result === null){
-            throw new Error('No document found!');
-        }
-        return result;
+    fastify.get('/animals/:name', { singleAnimalSchema },
+        async (request ,response) => {
+            const result = await collection.findOne({name: request.params.name});
+            if (result === null){
+                throw new Error('No document found!');
+            }
+            return result;
     });
 };
 

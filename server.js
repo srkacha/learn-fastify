@@ -3,11 +3,6 @@ const fastify = require('fastify')({
     logger: true
 });
 
-// Declaring a route
-// fastify.get('/', (request, response) => {
-//     response.send({hello: 'world'});
-// });
-
 // Instead of declaring a route, we register a plugin with routes
 fastify.register(require('./db-connector'));
 fastify.register(require('./basic-route'));

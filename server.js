@@ -9,6 +9,7 @@ const fastify = require('fastify')({
 // });
 
 // Instead of declaring a route, we register a plugin with routes
+fastify.register(require('./db-connector'));
 fastify.register(require('./basic-route'));
 
 // Running the server

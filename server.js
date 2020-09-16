@@ -4,9 +4,12 @@ const fastify = require('fastify')({
 });
 
 // Declaring a route
-fastify.get('/', (request, response) => {
-    response.send({hello: 'world'});
-});
+// fastify.get('/', (request, response) => {
+//     response.send({hello: 'world'});
+// });
+
+// Instead of declaring a route, we register a plugin with routes
+fastify.register(require('./basic-route'));
 
 // Running the server
 // Config params are set in /config/config.js
